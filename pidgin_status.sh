@@ -34,6 +34,7 @@ do
       endDay=`date -d "$endDay" +%m/%d/%y`
       endTime=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f2 | cut -c1-4`
       endTime=`date --date="TZ=\"$TZ\" $endTime" | awk '{print $4}' | cut -d: -f1,2`
+      # end one minute early to avoid conflict with next item starting at the same time
       endTime=`date -d "$endTime 1 min ago" +%R`
 
       if [ "$status" != "CANCELED" ] 
@@ -47,6 +48,8 @@ do
 done < /tmp/cleaned
 rm /tmp/cleaned
 
+
+# Run the script again every 5 min ( 1 min earlier if on the 0 or 5 to avoid removing at jobs for current minute
 minute=`date|cut -d: -f2`
 if [ `expr $minute % 5` -eq 0 ]
 then
