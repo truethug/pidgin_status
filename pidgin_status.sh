@@ -46,7 +46,7 @@ do
       fi
    fi
 done < /tmp/cleaned
-#rm /tmp/cleaned
+rm /tmp/cleaned
 
 minute=`date|cut -d: -f2`
 if [ `expr $minute % 5` -eq 0 ]
