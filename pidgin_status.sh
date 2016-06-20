@@ -26,9 +26,8 @@ do
       TZ=`echo $line | cut -d= -f2| cut -d: -f1`
       startDay=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f1`
       startDay=`date -d "$startDay" +%m/%d/%y`
-      startHour=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f2 | cut -c1-2`
-      startMin=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f2 | cut -c3-4`
-      startTime=`date --date="TZ=\"$TZ\" $startHour:$startMin" | awk '{print $4}' | cut -d: -f1,2` 
+      startTime=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f2 | cut -c1-4`
+      startTime=`date --date="TZ=\"$TZ\" $startTime" | awk '{print $4}' | cut -d: -f1,2` 
     
       read line
       endDay=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f1`
