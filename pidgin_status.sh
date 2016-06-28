@@ -27,7 +27,7 @@ do
       startDay=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f1`
       startDay=`date -d "$startDay" +%m/%d/%y`
       startTime=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f2 | cut -c1-4`
-      startTime=`date --date="TZ=\"$TZ\" $startTime" | awk '{print $4}' | cut -d: -f1,2` 
+      startAt=`date --date="TZ=\"$TZ\" $startTime" | awk '{print $4}' | cut -d: -f1,2` 
     
       read line
       endDay=`echo $line | tr -d '\r' | cut -d: -f2- | cut -dT -f1`
@@ -40,8 +40,8 @@ do
       if [ "$status" != "CANCELED" -a "$startTime" != "" ] 
       then
          # Add new at jobs
-         echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"  | at $startTime $startDay"
-         echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"" | at $startTime $startDay
+         echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"  | at $startAt $startDay"
+         echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"" | at $startAt $startDay
          echo "export $screen;/usr/bin/purple-remote setstatus?status=available;/usr/bin/purple-remote setstatus?message=" | at $endTime $endDay
       fi
    fi
