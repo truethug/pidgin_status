@@ -14,7 +14,7 @@ done
 while read -r line
 do
    summary=`echo $line | tr -d '\r' | grep SUMMARY:`
-   if [ "$summary" != "" ]
+   if [ "$summary" != "" -a "`echo $summary | grep -i Canceled`" == "" ]
    then
       summary=`echo $line | tr -d '\r' | cut -d: -f2-`
       summary=`echo "$summary" | sed 's/\"/\\\"/g'`
