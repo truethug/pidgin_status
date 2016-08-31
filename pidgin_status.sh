@@ -2,6 +2,9 @@
 
 # Add this to autostart and make sure display in correct below
 
+# Folder this script is in
+SCRIPT_HOME=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
+
 #screen=`env|grep DISPLAY`
 screen="DISPLAY=:0.0"
 
@@ -55,7 +58,8 @@ rm /tmp/cleaned
 minute=`date|cut -d: -f2`
 if [ `expr $minute % 5` -eq 0 ]
 then
-   echo "/home/phic/Documents/pidgin_status.sh" | at now + 4 minutes
+   echo "$SCRIPT_HOME/pidgin_status.sh" | at now + 4 minutes
 else
-   echo "/home/phic/Documents/pidgin_status.sh" | at now + 5 minutes
+   echo "$SCRIPT_HOME/pidgin_status.sh" | at now + 5 minutes
 fi
+
