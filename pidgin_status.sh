@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Add this to autostart and make sure display in correct below
+
 #screen=`env|grep DISPLAY`
 screen="DISPLAY=:0.0"
 
