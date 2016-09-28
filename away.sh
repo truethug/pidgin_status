@@ -1,6 +1,8 @@
 #!/bin/bash
 
-screen="DISPLAY=:0.0"
+#screen="DISPLAY=:0.0"
+
+screen=$1
 
 old=`cat /tmp/.awaytime`
 new=`date -d -3sec +%Y%m%d%H%M%S`

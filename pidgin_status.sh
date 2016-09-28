@@ -6,7 +6,8 @@
 SCRIPT_HOME=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
 
 #screen=`env|grep DISPLAY`
-screen="DISPLAY=:0.0"
+#screen="DISPLAY=:0.0"
+screen=$1
 
 egrep "DTSTART|DTEND|SUMMARY|STATUS" ~/.thunderbird/Work.ics > /tmp/cleaned
 
@@ -58,8 +59,8 @@ rm /tmp/cleaned
 minute=`date|cut -d: -f2`
 if [ `expr $minute % 5` -eq 0 ]
 then
-   echo "$SCRIPT_HOME/pidgin_status.sh" | at now + 4 minutes
+   echo "$SCRIPT_HOME/pidgin_status.sh $screen" | at now + 4 minutes
 else
-   echo "$SCRIPT_HOME/pidgin_status.sh" | at now + 5 minutes
+   echo "$SCRIPT_HOME/pidgin_status.sh $screen" | at now + 5 minutes
 fi
 
