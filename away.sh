@@ -11,6 +11,7 @@ then
    echo $status
    echo `date -d now +%Y%m%d%H%M%S` > /tmp/.awaytime
 
+   # when going away there are 2 messages back to back, only change status on second
    if [ $old -ge $new ]
    then
       purple-remote 'getstatusmessage' > /tmp/.message
