@@ -43,7 +43,7 @@ do
       # end one minute early to avoid conflict with next item starting at the same time
       endTime=`date -d "$endTime 1 min ago" +%R`
 
-      if [ "$status" != "CANCELED" -a "$startTime" != "" ] 
+      if [ "$status" != "TENTATIVE" -a "$status" != "CANCELED" -a "$startTime" != "" ] 
       then
          # Add new at jobs
          echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"  | at $startAt $startDay"
