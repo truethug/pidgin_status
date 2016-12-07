@@ -25,6 +25,11 @@ then
 fi
 
 egrep "DTSTART|DTEND|SUMMARY|STATUS" ~/.thunderbird/Work.ics > /tmp/cleaned
+m1=`md5sum /tmp/cleaned | awk '{print $1}'`
+m2=`md5sum /tmp/cleaned2 | awk '{print $1}'`
+
+if [ "$m1" != "$m2" ]
+then
 
 # remove old at jobs
 for i in `atq|awk '{print $1}'`
@@ -109,7 +114,8 @@ else # Microsoft format
       fi
    done < /tmp/cleaned
 fi
-rm /tmp/cleaned
+cp /tmp/cleaned /tmp/cleaned2
+fi
 
 # Run the script again every 5 min ( 1 min earlier if on the 0 or 5 to avoid removing at jobs for current minute
 minute=`date|cut -d: -f2`
@@ -119,4 +125,3 @@ then
 else
    echo "$SCRIPT_HOME/pidgin_status.sh $screen" | at now + 5 minutes
 fi
-
