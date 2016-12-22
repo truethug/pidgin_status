@@ -149,8 +149,8 @@ then
          fi
       fi
    done < /tmp/cleaned
-   mv /tmp/cleaned /tmp/cleaned2
 fi
+mv /tmp/cleaned /tmp/cleaned2
 
 # Run the script again every 5 min ( 1 min earlier if on the 0 or 5 to avoid removing at jobs for current minute
 minute=`date|cut -d: -f2`
