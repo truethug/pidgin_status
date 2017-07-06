@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Add launcher.sh to autostart and make sure display in correct below
+# Add launcher.sh to autostart and make sure DISPLAY is correct
 
 # Folder this script is in
 SCRIPT_HOME=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
@@ -126,7 +126,6 @@ then
             read line
             getInfo
          fi 
-
 
          if [ "$stop" != "true" ]
          then
