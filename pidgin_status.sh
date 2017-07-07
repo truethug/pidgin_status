@@ -8,6 +8,7 @@ SCRIPT_HOME=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
 #screen=`env|grep DISPLAY`
 #screen="DISPLAY=:0.0"
 screen=$1
+calendar="~/.thunderbird/Work.ics"
 
 function getSummary() 
 {
@@ -85,11 +86,11 @@ then
       # https://server.com:port/path/calendar.ics
       server=$line
       echo $server
-      curl -k --user "$secure" "$server" > ~/.thunderbird/Work.ics
+      curl -k --user "$secure" "$server" > $calendar
    done < ~/.ssh/webdav
 fi
 
-egrep "DTSTART|DTEND|SUMMARY|STATUS|BEGIN:VEVENT" ~/.thunderbird/Work.ics > /tmp/cleaned
+egrep "DTSTART|DTEND|SUMMARY|STATUS|BEGIN:VEVENT" $calendar > /tmp/cleaned
 m1=`md5sum /tmp/cleaned | awk '{print $1}'`
 m2=`md5sum /tmp/cleaned2 | awk '{print $1}'`
 
