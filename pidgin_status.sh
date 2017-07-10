@@ -8,7 +8,7 @@ SCRIPT_HOME=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
 #screen=`env|grep DISPLAY`
 #screen="DISPLAY=:0.0"
 screen=$1
-calendar="~/.thunderbird/Work.ics"
+calendar=~/.thunderbird/Work.ics
 
 function getSummary() 
 {
