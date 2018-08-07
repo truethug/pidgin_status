@@ -140,7 +140,7 @@ then
             getInfo
          fi 
 
-         if [ "$status" != "TENTATIVE" -a "$status" != "CANCELED" -a "$startTime" != "" -a "`echo $summary | grep -i Canceled`" == "" -a "`echo $summary | grep -i Tentative`" == ""] 
+         if [ "$status" != "TENTATIVE" -a "$status" != "CANCELED" -a "$startTime" != "" -a "`echo $summary | grep -i Canceled`" == "" -a "`echo $summary | grep -i Tentative`" == "" -a "`echo $summary | grep -i Free`" == "" ] 
          then
             # Add new at jobs
             echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"  | at $startTime $startDay"
