@@ -142,10 +142,10 @@ then
 
          if [ "$status" != "" -a "$status" != "TENTATIVE" -a "$status" != "CANCELED" -a "$startTime" != "" -a \
               "`echo $summary | grep -i Canceled`" == "" -a "`echo $summary | grep -i Tentative`" == "" -a \
-              "`echo $summary | grep -i Free`" == "" -a `echo $summary | grep "Attendee Invite:"`" == ""`] 
+              "`echo $summary | grep -i Free`" == "" -a "`echo $summary | grep 'Attendee Invite:'`" == "" ] 
          then
             # Add new at jobs
-            echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"  | at $startTime $startDay"
+            echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"" | at $startTime $startDay
             echo "export $screen;/usr/bin/purple-remote setstatus?status=extended_away;/usr/bin/purple-remote setstatus?message=\"$summary\"" | at $startTime $startDay
             echo "export $screen;/usr/bin/purple-remote setstatus?status=available;/usr/bin/purple-remote setstatus?message=" | at $endTime $endDay
          fi
