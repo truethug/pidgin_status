@@ -53,11 +53,11 @@ function getInfo()
 {
    if [ "`echo $line | grep BEGIN:VEVENT`" == "" ]
    then
-      if [ "`echo $line | grep ^SUMMARY`" != "" ]
+      if [ "`echo $line | grep ^SUMMARY:`" != "" ]
       then
          getSummary
          echo $summary
-      elif [ "`echo $line | grep STATUS:`" != "" ]
+      elif [ "`echo $line | grep ^STATUS:`" != "" ]
       then
          getStatus
          echo $status
@@ -70,8 +70,6 @@ function getInfo()
          getEnd
          echo $endDay $endTime
       fi
-   else
-      stop="true"
    fi
 }
 
@@ -111,7 +109,6 @@ then
       status=""
       startTime=""
       endTime=""
-      stop=""
       begin=`echo $line | tr -d '\r' | grep BEGIN:VEVENT`
       if [ "$begin" != "" ]
       then
@@ -122,19 +119,13 @@ then
          read line
          getInfo
 
-         if [ "$stop" != "true" ]
-         then
-            read line
-            getInfo
-         fi 
+         read line
+         getInfo
 
-         if [ "$stop" != "true" ]
-         then
-            read line
-            getInfo
-         fi 
+         read line
+         getInfo
 
-         if [ "$stop" != "true" -a "$status" != "" ]
+         if [ "$status" != "" ]
          then
             read line
             getInfo
